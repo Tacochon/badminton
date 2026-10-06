@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tacochon Badminton Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: court-floor hero with a to-scale court diagram, then a single reading column of sections */
+:root {
+  --bg: #f3f6f4;
+  --surface: #ffffff;
+  --fg: #16231f;
+  --muted: #55665f;
+  --rule: #d5dfda;
+  --court: #1d5a50;
+  --court-deep: #143f38;
+  --line: #f4f8f6;
+  --shuttle: #e6d23c;
+  --accent: #1d5a50;
+  --font-display: "Dela Gothic One", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1715; --surface: #16211e; --fg: #e4ece8; --muted: #9db0a8; --rule: #2a3a35;
+    --court: #1a4f46; --court-deep: #0f302a; --accent: #7cc7b5; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1715; --surface: #16211e; --fg: #e4ece8; --muted: #9db0a8; --rule: #2a3a35;
+  --court: #1a4f46; --court-deep: #0f302a; --accent: #7cc7b5; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+}
+h1, h2, h3 { text-wrap: balance; line-height: 1.3; margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--shuttle); outline-offset: 2px; }
+
+.wrap { max-width: 960px; margin: 0 auto; padding-inline: 20px; }
+
+/* Nav */
+.nav {
+  background: var(--court-deep);
+  color: var(--line);
+}
+.nav .wrap {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 8px 24px; padding-block: 14px;
+}
+.brand { font-family: var(--font-display); font-size: 1.05rem; letter-spacing: 0.02em; color: var(--line); text-decoration: none; }
+.nav ul { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+.nav a { color: var(--line); text-decoration: none; opacity: 0.85; }
+.nav a:hover { opacity: 1; text-decoration: underline; text-decoration-color: var(--shuttle); text-underline-offset: 4px; }
+
+/* Hero */
+.hero { background: var(--court); color: var(--line); }
+.hero .wrap { display: grid; gap: 28px; padding-block: 48px 40px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--shuttle); }
+.hero h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 6vw, 3.4rem); letter-spacing: 0.01em; }
+.hero p.lead { max-width: 34em; margin: 0; font-size: 1.05rem; opacity: 0.92; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none;
+  background: var(--shuttle); color: #1b1a08; border: 2px solid var(--shuttle);
+}
+.btn.ghost { background: transparent; color: var(--line); border-color: rgba(244,248,246,0.5); }
+.btn:hover { filter: brightness(1.05); }
+
+.court { width: 100%; max-width: 100%; height: auto; display: block; }
+.court-cap { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.75; margin: 6px 0 0; }
+
+/* Sections */
+main section { padding-block: 56px; border-bottom: 1px solid var(--rule); }
+main section:last-child { border-bottom: 0; }
+.sec-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.5rem, 4vw, 2rem); margin-top: 6px; margin-bottom: 20px; }
+p { max-width: 38em; }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 24px; }
+.fact { padding-top: 12px; border-top: 3px solid var(--court); }
+.fact b { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.fact span { color: var(--muted); font-size: 0.9rem; }
+
+.table-box { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 520px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--rule); }
+th { font-size: 0.8rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+td.time { font-family: var(--font-mono); white-space: nowrap; }
+.tag { display: inline-block; font-size: 0.78rem; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+.tag.beg { border-color: var(--accent); color: var(--accent); }
+
+.fees { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.fee { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 20px; display: grid; gap: 6px; align-content: start; }
+.fee h3 { font-size: 1rem; font-weight: 700; }
+.fee .price { font-family: var(--font-mono); font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.fee .price small { font-size: 0.85rem; color: var(--muted); }
+.fee p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+form { display: grid; gap: 16px; max-width: 520px; }
+label { display: grid; gap: 6px; font-weight: 500; font-size: 0.92rem; }
+input, select, textarea {
+  font: inherit; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--fg);
+}
+button.submit { justify-self: start; font: inherit; font-weight: 700; cursor: pointer; padding: 12px 24px; border-radius: 999px; border: 0; background: var(--court); color: var(--line); }
+.notice { padding: 12px 16px; border-left: 4px solid var(--shuttle); background: var(--surface); max-width: 520px; }
+
+.access { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+.access dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; }
+.access dt { color: var(--muted); font-size: 0.9rem; }
+.access dd { margin: 0; min-width: 0; }
+
+footer { background: var(--court-deep); color: var(--line); font-size: 0.85rem; }
+footer .wrap { padding-block: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .shuttle-path { stroke-dasharray: 6 8; animation: fly 2.4s linear infinite; }
+  @keyframes fly { to { stroke-dashoffset: -28; } }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">TACOCHON BC</a>
+    <nav aria-label="メイン">
+      <ul>
+        <li><a href="#about">クラブについて</a></li>
+        <li><a href="#schedule">練習日程</a></li>
+        <li><a href="#fees">会費</a></li>
+        <li><a href="#trial">体験参加</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div style="display:grid;gap:16px">
+      <div class="eyebrow">Badminton Club · Since 2026</div>
+      <h1>週2回、21点を<br>楽しみ尽くす。</h1>
+      <p class="lead">初心者から大会経験者まで、レベル別に練習しているバドミントンクラブです。ラケット1本で参加できます。まずは体験参加からどうぞ。</p>
+      <div class="cta-row">
+        <a class="btn" href="#trial">体験を申し込む</a>
+        <a class="btn ghost" href="#schedule">練習日程を見る</a>
+      </div>
+    </div>
+    <figure style="margin:0">
+      <!-- 1 unit = 1 cm. Court 1340 × 610 cm -->
+      <svg class="court" viewBox="-40 -40 1420 690" role="img" aria-label="バドミントンコートの縮尺図（13.40m × 6.10m）">
+        <g fill="none" stroke="#f4f8f6" stroke-width="5">
+          <rect x="0" y="0" width="1340" height="610"/>
+          <line x1="0" y1="46" x2="1340" y2="46"/>
+          <line x1="0" y1="564" x2="1340" y2="564"/>
+          <line x1="472" y1="0" x2="472" y2="610"/>
+          <line x1="868" y1="0" x2="868" y2="610"/>
+          <line x1="76" y1="0" x2="76" y2="610"/>
+          <line x1="1264" y1="0" x2="1264" y2="610"/>
+          <line x1="0" y1="305" x2="472" y2="305"/>
+          <line x1="868" y1="305" x2="1340" y2="305"/>
+        </g>
+        <line x1="670" y1="-20" x2="670" y2="630" stroke="#e6d23c" stroke-width="8"/>
+        <path class="shuttle-path" d="M 200 470 Q 670 -60 1120 160" fill="none" stroke="#e6d23c" stroke-width="4" opacity="0.8"/>
+        <circle cx="1120" cy="160" r="12" fill="#e6d23c"/>
+        <g font-family="IBM Plex Mono, monospace" font-size="26" fill="#f4f8f6" opacity="0.8">
+          <text x="684" y="-12">NET 1.524m</text>
+          <text x="484" y="600">1.98m</text>
+          <text x="1090" y="636">13.40m</text>
+        </g>
+      </svg>
+      <figcaption class="court-cap">ダブルスコート 13.40m × 6.10m（縮尺図）</figcaption>
+    </figure>
+  </div>
+</div>
+
+<main class="wrap">
+  <section id="about">
+    <div class="sec-label">About</div>
+    <h2>クラブについて</h2>
+    <p>地域の体育館で、平日夜と週末に活動しています。基礎打ちとノックのあとはゲーム練習。ラリーポイント制の21点マッチを中心に、シングルスもダブルスも楽しめます。</p>
+    <div class="facts">
+      <div class="fact"><b>42名</b><span>在籍メンバー（例）</span></div>
+      <div class="fact"><b>週2回</b><span>定期練習</span></div>
+      <div class="fact"><b>4面</b><span>使用コート数</span></div>
+      <div class="fact"><b>20–60代</b><span>メンバーの年齢層</span></div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="sec-label">Schedule</div>
+    <h2>練習日程</h2>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>曜日</th><th>時間</th><th>内容</th><th>レベル</th></tr></thead>
+        <tbody>
+          <tr><td>水曜</td><td class="time">19:00–21:00</td><td>基礎打ち・ノック・ゲーム</td><td><span class="tag">全レベル</span></td></tr>
+          <tr><td>土曜</td><td class="time">09:00–12:00</td><td>初心者レッスン（〜10:30）</td><td><span class="tag beg">初心者</span></td></tr>
+          <tr><td>土曜</td><td class="time">10:30–12:00</td><td>ダブルス ゲーム練習</td><td><span class="tag">中級以上</span></td></tr>
+          <tr><td>第4日曜</td><td class="time">13:00–17:00</td><td>クラブ内 21点マッチ大会</td><td><span class="tag">全レベル</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="fees">
+    <div class="sec-label">Fees</div>
+    <h2>会費</h2>
+    <div class="fees">
+      <div class="fee"><h3>体験参加</h3><div class="price">¥0 <small>/ 1回目</small></div><p>ラケットの貸し出しあり。室内シューズだけご持参ください。</p></div>
+      <div class="fee"><h3>月会費</h3><div class="price">¥3,000 <small>/ 月</small></div><p>すべての定期練習に参加できます。シャトル代込み。</p></div>
+      <div class="fee"><h3>ビジター</h3><div class="price">¥800 <small>/ 回</small></div><p>都合のよい日だけ参加したい方向けです。</p></div>
+    </div>
+  </section>
+
+  <section id="trial">
+    <div class="sec-label">Trial</div>
+    <h2>体験参加の申し込み</h2>
+    <form id="trial-form">
+      <label for="f-name">お名前<input id="f-name" name="name" required autocomplete="name"></label>
+      <label for="f-email">メールアドレス<input id="f-email" name="email" type="email" required autocomplete="email"></label>
+      <label for="f-level">経験
+        <select id="f-level" name="level">
+          <option>はじめて</option>
+          <option>学生時代に経験あり</option>
+          <option>現在も継続中</option>
+        </select>
+      </label>
+      <label for="f-day">希望日
+        <select id="f-day" name="day">
+          <option>水曜 19:00–21:00</option>
+          <option>土曜 09:00–12:00</option>
+        </select>
+      </label>
+      <label for="f-note">メッセージ（任意）<textarea id="f-note" name="note" rows="3"></textarea></label>
+      <button class="submit" type="submit">申し込む</button>
+    </form>
+    <p class="notice" id="trial-done" hidden>入力ありがとうございます。このフォームは見本のため、まだ送信先が設定されていません。</p>
+  </section>
+
+  <section id="access">
+    <div class="sec-label">Access</div>
+    <h2>アクセス</h2>
+    <div class="access">
+      <dl>
+        <dt>会場</dt><dd>市民体育館 第1アリーナ（例）</dd>
+        <dt>住所</dt><dd>〇〇市〇〇町1-2-3</dd>
+        <dt>最寄駅</dt><dd>〇〇駅 徒歩8分</dd>
+        <dt>駐車場</dt><dd>あり（無料・80台）</dd>
+      </dl>
+      <dl>
+        <dt>連絡先</dt><dd>info@example.com</dd>
+        <dt>持ち物</dt><dd>室内シューズ、飲み物、タオル</dd>
+        <dt>シャトル</dt><dd>クラブで用意（水鳥）</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Tacochon Badminton Club</span>
+    <a href="#top" style="color:inherit">ページの先頭へ</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('trial-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  this.hidden = true;
+  document.getElementById('trial-done').hidden = false;
+});
+</script>
+</body>
+</html>
