@@ -97,7 +97,7 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 
-.nav { display: flex; gap: 28px; }
+.nav { display: flex; gap: 24px; }
 
 .nav a {
   font-size: 0.875rem;
@@ -286,124 +286,163 @@ img { max-width: 100%; display: block; }
   color: var(--text-muted);
 }
 
-/* ===== 実績 ===== */
-.media-box {
-  margin-bottom: 48px;
-  padding: 28px 32px;
+/* ===== 現在の活動 ===== */
+.section-title small {
+  margin-left: 12px;
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.activities { display: grid; gap: 16px; }
+
+.activity {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 32px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
 }
 
-.media-title { margin: 0 0 12px; font-size: 0.85rem; font-weight: 700; }
-
-.media-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px 24px;
+.activity-num {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  line-height: 1.4;
 }
 
-.filters {
+.activity h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.activity p { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+
+.activity .sub {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+
+.facts {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 24px;
-}
-
-.filter {
-  padding: 6px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--text-muted);
-  font: inherit;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.filter:hover { color: var(--accent); }
-
-.filter.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-.works-list {
-  margin: 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
+}
+
+.facts li {
+  padding: 4px 12px;
+  background: var(--bg-alt);
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.facts strong { color: var(--accent); }
+
+/* ===== 執筆実績 ===== */
+.featured {
+  padding: 36px 40px;
   background: var(--surface);
   border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
   border-radius: 12px;
 }
 
-.works-list li {
-  display: grid;
-  grid-template-columns: 72px 120px 180px 1fr;
-  align-items: baseline;
-  gap: 16px;
-  padding: 18px 24px;
-  border-top: 1px solid var(--border);
+.featured-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 12px;
 }
 
-.works-list li:first-child { border-top: 0; }
-
-.works-list time { color: var(--text-muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
-
 .badge {
-  justify-self: start;
   padding: 1px 10px;
   border: 1px solid var(--accent);
   border-radius: 4px;
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  white-space: nowrap;
 }
 
-.media { color: var(--text-muted); font-size: 0.85rem; }
+.featured-pv { color: var(--text-muted); font-size: 0.85rem; }
+.featured-pv strong { color: var(--gold); font-size: 1.1rem; }
 
-.works-list a { font-weight: 500; text-decoration: none; }
-.works-list a:hover { color: var(--accent); text-decoration: underline; }
+.featured h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
 
-.more-wrap { margin-top: 32px; text-align: center; }
+.featured h3 a { text-decoration: none; }
+.featured h3 a:hover { color: var(--accent); text-decoration: underline; }
 
-/* ===== お仕事 ===== */
+.works-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.work-link {
+  display: block;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.2s;
+}
+
+.work-link:hover { border-color: var(--accent); }
+
+.work-link-media { display: block; color: var(--text-muted); font-size: 0.8rem; }
+
+.work-link-title { font-weight: 500; }
+.work-link-title::after { content: " →"; color: var(--accent); }
+
+/* ===== ご相談いただける案件 ===== */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
-.service { border-top: 2px solid var(--accent); padding-top: 20px; }
-
-.service-num {
-  margin: 0;
-  color: var(--gold);
-  font-family: var(--serif);
-  font-size: 0.9rem;
+.service {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 8px;
 }
 
 .service h3 {
-  margin: 4px 0 12px;
+  margin: 0 0 8px;
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 
-.service p:last-child {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
+.service p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
 
-.note { margin: 48px 0 0; color: var(--text-muted); font-size: 0.875rem; }
+.service .price { margin-top: 12px; color: var(--accent); font-weight: 700; }
+.service .caution { margin-top: 12px; font-size: 0.8rem; }
+
+/* 最後の1件だけ行に残る場合は横幅いっぱいに */
+.service:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+
+.note { margin: 32px 0 0; color: var(--text-muted); font-size: 0.875rem; }
 
 /* ===== お問い合わせ ===== */
 .section-dark { background: var(--dark-bg); color: var(--dark-text); }
@@ -435,9 +474,9 @@ img { max-width: 100%; display: block; }
 
 /* ===== タブレット ===== */
 @media (max-width: 960px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
-  .works-list li { grid-template-columns: 72px 120px 1fr; }
-  .works-list a { grid-column: 1 / -1; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .service:last-child:nth-child(3n+1) { grid-column: auto; }
+  .service:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 
 /* ===== スマホ ===== */
@@ -447,7 +486,7 @@ img { max-width: 100%; display: block; }
   .pc { display: none; }
 
   .header-inner { height: auto; padding-top: 12px; padding-bottom: 12px; flex-direction: column; gap: 4px; }
-  .nav { gap: 16px; }
+  .nav { flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
   .nav a { font-size: 0.8rem; }
 
   .hero { padding: 72px 0 56px; }
@@ -461,16 +500,14 @@ img { max-width: 100%; display: block; }
   .about { grid-template-columns: 1fr; gap: 32px; }
   .about-photo { width: 160px; }
 
-  .media-box { padding: 20px; }
-  .media-list { grid-template-columns: repeat(2, 1fr); }
+  .section-title small { display: block; margin: 4px 0 0; }
 
-  .works-list li {
-    grid-template-columns: auto auto 1fr;
-    gap: 4px 12px;
-    padding: 16px;
-  }
+  .activity { grid-template-columns: 1fr; gap: 4px; padding: 24px 20px; }
+  .featured { padding: 24px 20px; }
+  .featured h3 { font-size: 1.1rem; }
+  .works-links { grid-template-columns: 1fr; }
 
-  .services-grid { grid-template-columns: 1fr; gap: 32px; }
+  .services-grid { grid-template-columns: 1fr; }
 
   .btn-large { padding: 14px 24px; font-size: 0.9rem; }
 }
